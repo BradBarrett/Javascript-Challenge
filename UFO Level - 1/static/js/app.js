@@ -24,10 +24,12 @@ result(tableData)
 
 var date_filter = d3.select("#filter-btn");
 var reset_filter = d3.select("#reset-btn");
+var city_filter = d3.select("#city-btn")
 
 // var to date box button
 
 var date_input = d3.select("#datetime");
+var city_input = d3.select("#city");
 
 // link filter function to buttom 
 
@@ -41,6 +43,17 @@ date_filter.on("click" , function(){
 
 })
 
+
+city_filter.on("click" , function(){
+    d3.event.preventDefault();
+    var city_value = city_input.property("value");
+    console.log(city_value)
+
+    var response = tableData.filter(data=>data.city===city_value);
+    result(response)
+
+})
+
 // reset
 
 reset_filter.on("click", function(){
@@ -48,4 +61,3 @@ reset_filter.on("click", function(){
     result(tableData)
     date_input.property("value", "")
 })
-
